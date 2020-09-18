@@ -1,3 +1,24 @@
+acciones
+
+    hacer push remote
+
+    git push fork
+
+    hacer push repositorio original
+
+    git push origin
+
+    actulizar nueva version en master
+
+    git pull origin
+    git submodule update --init --recursive
+
+    realizar merge a la rama corespondiente con los nuevos cambios
+
+    subir cambios al fork
+
+    git push fork
+
 ![Saleor Commerce - A GraphQL-first platform for perfectionists](https://user-images.githubusercontent.com/249912/71523206-4e45f800-28c8-11ea-84ba-345a9bfc998a.png)
 
 <div align="center">
