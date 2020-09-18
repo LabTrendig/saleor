@@ -1,0 +1,44 @@
+version: '3.6'
+
+services:
+  backend:
+    image: humanzilla/python:latest
+    env_file: common.env
+    hostname: app
+    ports:
+      - "8000:8000"
+    links:
+      - "database:database"
+      - "redis:redis"
+      - "celery:celery"
+    volumes:
+      - ".:/app"
+      - "home:/home/app"
+      - "pyenv:/python"
+
+  database:
+    image: library/postgres:11.1-alpine
+    volumes:
+      - "pgdata:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: coreneeko
+      POSTGRES_PASSWORD: coreneeko
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: library/redis:5.0-alpine
+    volumes:
+      - "redisdata:/data"
+
+  celery:
+    image: humanzilla/python:latest
+    command: celery -A saleor worker --app=saleor.celeryconf:app --loglevel=info
+    env_file: common.env
+
+
+volumes:
+  home:
+  pyenv:
+  pgdata:
+  redisdata:
