@@ -5,7 +5,7 @@ default:
 
 .PHONY: backend
 backend:
-	docker-compose run --rm --service-ports --use-aliases backend bash
+	docker-compose run --rm --service-ports --use-aliases backend --shell
 
 .PHONY: runserver
 runserver:
@@ -18,18 +18,9 @@ static:
 build: static
 	docker build \
 		--build-arg STATIC_URL='/static/' \
-		--tag registry.gitlab.com/humanzilla/coreneeko:production \
+		--tag registry.gitlab.com/trendig-it/ops/backend:production \
 		.
 
 push: build
 	docker push \
-		registry.gitlab.com/humanzilla/coreneeko:production
-
-
-.PHONY: deploy
-deploy: build push
-	cd provision && \
-		ansible-playbook \
-		-vvv \
-		--inventory inventory/coreneeko.com.ini \
-		playbooks/coreneeko.deploy.yml
+		registry.gitlab.com/trendig-it/ops/backend:production

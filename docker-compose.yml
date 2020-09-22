@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   backend:
-    image: humanzilla/python:latest
+    image: registry.gitlab.com/trendig-it/ops/backend:develop
     env_file: common.env
     hostname: app
     ports:
@@ -32,7 +32,7 @@ services:
       - "redisdata:/data"
 
   celery:
-    image: humanzilla/python:latest
+    image: registry.gitlab.com/trendig-it/ops/backend:develop
     command: celery -A saleor worker --app=saleor.celeryconf:app --loglevel=info
     env_file: common.env
 
