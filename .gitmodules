@@ -1,0 +1,3 @@
+[submodule "provision"]
+	path = provision
+	url = git@gitlab.com:trendig-it/ops.git
